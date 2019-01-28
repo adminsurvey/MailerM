@@ -45,13 +45,13 @@ def mailer(list):
     fromaddr = '###############################'
     toaddrs  = '################################'
     #bar = progressbar.ProgressBar()
-    #print("Downloading files from support.mozilla.com- ")
+    #print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX- ")
     for file in list:
         #count += 1;
         #percentage = (count / total) * 100
         progress(i, total, status='####################################')
         msg = MIMEMultipart()
-        msg['Subject'] = file.strip("C:\\Users\\Developer\\Desktop")
+        msg['Subject'] = file.strip("___________________________")
         msg['From'] = '########################'
         msg['To'] = '####################'
         username = 'XXXXXXXXXXXXXXXX'
